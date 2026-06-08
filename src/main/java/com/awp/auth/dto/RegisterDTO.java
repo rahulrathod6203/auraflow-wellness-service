@@ -25,6 +25,7 @@ public record RegisterDTO(
         String phone,
 
         @NotBlank(message = "Address cannot be blank!")
+        @Size(min = 3, message = "Enter a valid address!")
         String address
 
 ) {
