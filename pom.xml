@@ -111,7 +111,7 @@
     </dependencies>
 
     <build>
-        <finalName>auraflow-backend-service</finalName>
+        <finalName>auraflow-backend</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
