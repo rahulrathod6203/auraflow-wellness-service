@@ -7,19 +7,19 @@ spring:
     init:
       mode: never          # Ensures any test schemas or data seed scripts run automatically
 
-  # Database configuration (MySQL for Test Environment)
+  # Database configuration (PostgreSQL)
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${POSTGRES_DB_URL}          # Expected format: jdbc:postgresql://localhost:5432/your_db_name
+    username: ${POSTGRES_DB_USERNAME}
+    password: ${POSTGRES_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
 
   # JPA Hibernate configuration
   jpa:
     show-sql: true          # Enabled so you can see the queries executing during your tests
-    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: validate      # Alternately, use 'create-drop' to wipe and recreate tables per test suite execution
+      ddl-auto: validate     # Alternately, use 'create-drop' to wipe and recreate tables per test suite execution
     properties:
       hibernate:
         format_sql: true    # Pretty-prints SQL queries in your test console logs
