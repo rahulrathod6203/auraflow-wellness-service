@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class UserController {
@@ -27,7 +27,6 @@ public class UserController {
             @RequestParam ( defaultValue = AppConstants.DEFAULT_PAGE_NO) int pageNo,
             @RequestParam ( defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int pageSize,
             @RequestParam ( defaultValue = AppConstants.DEFAULT_SORT_BY) String sortBy
-
     ) {
 
         return ResponseEntity.ok(userService.getAllUsers(pageNo,pageSize,sortBy));
