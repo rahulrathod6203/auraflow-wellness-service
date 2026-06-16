@@ -53,6 +53,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
 
+        // Bypass JWT validation for OPTIONS/Preflight requests
+//        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+//            response.setStatus(HttpServletResponse.SC_OK);
+//            return;
+//        }
+
         // 3. Always pass control back into the filter network execution deck
         filterChain.doFilter(request, response);
     }
