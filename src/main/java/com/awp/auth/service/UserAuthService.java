@@ -10,4 +10,6 @@ public interface UserAuthService {
 
     AuthResponse register(RegisterDTO registerDTO);
 
+    void logout();
+
 }

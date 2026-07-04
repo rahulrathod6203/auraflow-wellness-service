@@ -12,5 +12,5 @@ public record UserSummaryDTO(
         String email,
 
         @JsonInclude(JsonInclude.Include.NON_NULL)
-        Set<String> roles) {
-}
+        Set<String> roles)
+{}

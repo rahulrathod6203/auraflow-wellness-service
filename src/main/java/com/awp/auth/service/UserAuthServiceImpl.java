@@ -118,4 +118,10 @@ public class UserAuthServiceImpl implements UserAuthService {
                 .message("Registration successful! Please proceed to the login screen.")
                 .user(userSummary).build();
     }
+
+    public void logout() {
+        // Clear the SecurityContext for the current authenticated user thread
+        SecurityContextHolder.clearContext();
+        log.info("Spring Security context successfully cleared for the user session.");
+    }
 }

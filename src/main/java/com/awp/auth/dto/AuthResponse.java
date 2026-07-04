@@ -18,5 +18,6 @@ public record AuthResponse(
         Instant timestamp,
 
         String message,
+
         UserSummaryDTO user) {
 }

@@ -39,4 +39,11 @@ public class AuthController {
                 .toUri();
         return ResponseEntity.created(location).body(authResponse);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout() {
+        log.info("Processing logout request...");
+        userAuthService.logout();
+        return ResponseEntity.noContent().build();
+    }
 }
