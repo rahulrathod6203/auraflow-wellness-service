@@ -112,10 +112,17 @@ public class UserServiceImpl implements UserService {
     public String deleteUserById(Long id) {
         log.info("Attempting to delete user record from system for User ID: {}", id);
 
-        userRepository.findById(id).orElseThrow(() -> {
+        User user = userRepository.findById(id).orElseThrow(() -> {
             log.warn("Delete failed: User with the given ID : {} not found!", id);
             return new UserNotFoundException("User with the given ID : " + id + " not found!");
         });
+
+        // remove roles of this user before deleting the user
+        user.getRoles().clear();
+        // save the user without any roles in user_roles table
+        userRepository.save(user);
+
+        // safely deletes the user with the given id.
         userRepository.deleteById(id);
         log.info("User with the given ID: {} successfully deleted from database.", id);
 
