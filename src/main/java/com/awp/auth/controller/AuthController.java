@@ -38,8 +38,8 @@ public class AuthController {
         AuthResponse authResponse = userAuthService.register(registerDTO);
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path("/api/v1/users/{email}")
+                .fromCurrentRequest()
+                .path("/{email}")
                 .buildAndExpand(registerDTO.email())
                 .toUri();
         return ResponseEntity.created(location).body(authResponse);

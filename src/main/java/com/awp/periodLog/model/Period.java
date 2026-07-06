@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PeriodLog {
+public class Period {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

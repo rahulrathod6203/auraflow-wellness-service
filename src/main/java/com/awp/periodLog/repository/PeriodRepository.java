@@ -1,9 +1,9 @@
 package com.awp.periodLog.repository;
 
-import com.awp.periodLog.model.PeriodLog;
+import com.awp.periodLog.model.Period;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PeriodLogRepository extends JpaRepository<PeriodLog, Long> {
+public interface PeriodRepository extends JpaRepository<Period, Long> {
 }
