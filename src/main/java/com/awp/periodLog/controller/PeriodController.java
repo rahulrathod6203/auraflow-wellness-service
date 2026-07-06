@@ -60,27 +60,4 @@ public class PeriodController {
         return ResponseEntity.ok(userService.getAllUsers(pageNo, pageSize, sortBy));
     }
 
-    @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or (hasRole('USER') and principal.id == #id)")
-    @Operation(summary = "Get user profile by ID", description = "Fetches a single user record using their unique database ID. Accessible by ADMINs or the profile owner.")
-    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.getUserById(id));
-    }
-
-    @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or (hasRole('USER') and principal.id == #id)")
-    @Operation(summary = "Update user profile details", description = "Modifies existing profile properties like name, phone, or address. Accessible by ADMINs or the profile owner.")
-    public ResponseEntity<UserResponseDTO> updateUser(
-            @PathVariable Long id,
-            @Valid @RequestBody UserRequestDTO request) {
-        return ResponseEntity.accepted().body(userService.updateUser(id, request));
-    }
-
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Delete user account by ID", description = "Permanently removes a user identity record from the system. Only accessible by ADMIN users.")
-    public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
-        String deletedMessage = userService.deleteUserById(id);
-        return ResponseEntity.ok().body(deletedMessage);
-    }
 }
