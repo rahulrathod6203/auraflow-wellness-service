@@ -19,7 +19,7 @@ spring:
     show-sql: true          # Enabled so you can see the queries executing during your tests
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
-      ddl-auto: validate      # Alternately, use 'create-drop' to wipe and recreate tables per test suite execution
+      ddl-auto: update      # Alternately, use 'create-drop' to wipe and recreate tables per test suite execution
     properties:
       hibernate:
         format_sql: true    # Pretty-prints SQL queries in your test console logs
