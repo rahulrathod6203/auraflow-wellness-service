@@ -12,11 +12,16 @@ import com.awp.periodLog.model.Period;
 import com.awp.periodLog.repository.PeriodRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -71,11 +76,17 @@ public class PeriodServiceImpl implements PeriodService {
 
     @Override
     public PeriodResponsePage getPeriodHistory(Long userId, int pageNo, int pageSize, String sortBy) {
+        Sort sorted = Sort.by(sortBy).ascending();
 
 
+        PageRequest pageRequest = PageRequest.of(pageNo,pageSize, sorted);
 
+        List<Period> periodByUserId = periodRepository.findPeriodByUser_Id(userId);
 
+        log.info("All period history for user id , {} , {} ",userId,periodByUserId);
 
-        return null;
+        System.out.println("Get all period history");
+
+        return PeriodResponsePage.builder().content(periodByUserId).build();
     }
 }

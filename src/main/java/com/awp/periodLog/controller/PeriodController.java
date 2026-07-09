@@ -2,10 +2,8 @@ package com.awp.periodLog.controller;
 
 import com.awp.periodLog.dto.PeriodRequestDTO;
 import com.awp.periodLog.dto.PeriodResponseDTO;
+import com.awp.periodLog.dto.PeriodResponsePage;
 import com.awp.periodLog.service.PeriodService;
-import com.awp.user.dto.UserRequestDTO;
-import com.awp.user.dto.UserResponseDTO;
-import com.awp.user.dto.UserResponsePage;
 import com.awp.user.service.UserService;
 import com.awp.user.util.AppConstants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,15 +47,14 @@ public class PeriodController {
         return ResponseEntity.created(location).body(periodResponseDTO);
     }
 
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Get all users (Paginated)", description = "Fetches a paginated list of all registered users. Only accessible by ADMIN users.")
-    public ResponseEntity<UserResponsePage> getAllUsers(
+    @GetMapping("/{userId}")
+    @PreAuthorize("hasRole('ADMIN') or (hasRole('USER') and principal.id == #userId)")
+    public ResponseEntity<PeriodResponsePage> getPeriodHistory(
             @RequestParam(defaultValue = AppConstants.DEFAULT_PAGE_NO) int pageNo,
             @RequestParam(defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int pageSize,
-            @RequestParam(defaultValue = AppConstants.DEFAULT_SORT_BY) String sortBy
-    ) {
-        return ResponseEntity.ok(userService.getAllUsers(pageNo, pageSize, sortBy));
+            @RequestParam(defaultValue = AppConstants.DEFAULT_SORT_BY) String sortBy,
+            @PathVariable Long userId) {
+        return ResponseEntity.ok(periodService.getPeriodHistory(userId, pageNo, pageSize, sortBy));
     }
 
 }

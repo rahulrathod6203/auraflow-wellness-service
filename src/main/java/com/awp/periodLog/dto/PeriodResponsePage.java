@@ -1,5 +1,6 @@
 package com.awp.periodLog.dto;
 
+import com.awp.periodLog.model.Period;
 import lombok.Builder;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 @Builder
 public record PeriodResponsePage(
 
-        List<PeriodResponseDTO> content,
+        List<Period> content,
 
         int pageNo,
 
