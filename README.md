@@ -2,6 +2,11 @@
 
 A production-style, high-performance menstrual wellness tracking application built using a decoupled layered architecture. This platform is engineered with a heavy focus on backend resilience, robust security standards, database optimization, and modern DevOps practices.
 
+# Note:
+
+* This project is being migrated to a microservice architechture and is under development. You can visit this repository for more info,
+* Aura-Microservice -> https://github.com/rahulrathod6203/AuraFlow-Microservice
+
 > 🚧 **Status:** Under Active Development  
 > 🎯 **Current Focus:** Implementing Transactional Logging & Symptom Analytics Engines
 
